@@ -59,3 +59,12 @@ typings/
 
 # next.js build output
 .next
+
+.editorconfig
+/server/server_db
+/server/node_modules
+
+yarn.lock
+.idea
+/dist
+package-lock.json

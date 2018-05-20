@@ -1,0 +1,56 @@
+<div class="area-root">
+	<h1>班级成绩</h1>
+
+	<!-- 列表 -->
+	<div class="area-list">
+		<div class="list-wrap" [ngClass]="{'v-hidden':boxMaxFlag}">
+			<table width="100%" mat-table [dataSource]="dataSource"
+				   matSortDisableClear>
+
+				<!--- Note that these columns can be defined in any order.
+					  The actual rendered columns are set as a property on the row definition" -->
+
+				<!-- name Column -->
+				<ng-container matColumnDef="name">
+					<th width="100" mat-header-cell *matHeaderCellDef>学号.</th>
+					<td mat-cell *matCellDef="let row"> {{ row.name }}</td>
+				</ng-container>
+
+				<!-- age Column -->
+				<ng-container matColumnDef="age">
+					<th width="100" mat-header-cell *matHeaderCellDef>年龄</th>
+					<td mat-cell *matCellDef="let row">{{ row.age }}</td>
+				</ng-container>
+
+				<!-- score Column -->
+				<ng-container matColumnDef="score">
+					<th width="100" mat-header-cell *matHeaderCellDef>分数</th>
+					<td mat-cell *matCellDef="let row">{{ row.score }}</td>
+				</ng-container>
+
+				<!-- code Column -->
+				<ng-container matColumnDef="code">
+					<th mat-header-cell *matHeaderCellDef>标志码</th>
+					<td mat-cell *matCellDef="let row">{{ row.code }}</td>
+				</ng-container>
+
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;let idx=index"
+					class="student-item" [ngClass]="{'select':studentSelected && studentSelected['name'] === row['name']}"
+					(click)="selectStudent(idx,row)"
+					></tr>
+			</table>
+
+			<mat-paginator [length]="1000" [pageSize]="10" [pageSizeOptions]="[ 5, 10, 20]" [showFirstLastButtons]="true">
+			</mat-paginator>
+
+		</div>
+
+	</div>
+	<!-- 详情 -->
+	<div class="area-detail">
+		<app-student [student]="studentSelected"></app-student>
+	</div>
+
+
+</div>

@@ -1,0 +1,63 @@
+.title {
+	font-size  : 30px;
+	text-align : center;
+	padding    : 20px;
+}
+
+.table {
+	display : table;
+	width   : 100%;
+	.table-row {
+		display : table-row;
+		.table-cell {
+			display         : table-cell;
+			padding         : 20px;
+			border-collapse : collapse;
+			border          : thin solid bisque;
+			&:first-child {
+				width      : 200px;
+				text-align : right;
+				background : cornflowerblue;
+				color      : white;
+			}
+			&:last-child {
+				background : burlywood;
+				color      : white;
+			}
+		}
+	}
+
+}
+
+.record-list {
+	display    : flex;
+	flex-flow  : row nowrap;
+	max-height : 100px;
+	visibility : visible;
+	transition : all 0.3s;
+	&.v-hidden {
+		max-height : 0px;
+		visibility : hidden;
+	}
+	.record-item {
+		margin          : 0px 5px;
+		display         : flex;
+		justify-content : center;
+		align-items     : center;
+		color           : burlywood;
+		border          : 2px solid burlywood;
+		border-radius   : 100%;
+		width           : 50px;
+		height          : 50px;
+		text-align      : center;
+		cursor          : pointer;
+		&:hover {
+			background : burlywood;
+			color      : white;
+		}
+		&.select {
+			background : sandybrown;
+			color      : white;
+		}
+	}
+}

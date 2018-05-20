@@ -1,0 +1,35 @@
+.student-item {
+	cursor : pointer;
+
+	&:hover {
+		background : blanchedalmond;
+	}
+
+	&.select {
+		background : burlywood;
+	}
+}
+
+.area-root {
+	display   : flex;
+	flex-flow : column nowrap;
+	height    : 100%;
+	.area-list {
+		flex-shrink : 0;
+		overflow    : hidden;
+		.list-wrap {
+			visibility : visible;
+			max-height : 1500px;
+			transition : all 0.3s;
+			overflow   : hidden;
+			&.v-hidden {
+				max-height : 0px;
+				visibility : hidden;
+			}
+		}
+	}
+	.area-detail {
+		flex-grow : 1;
+	}
+
+}

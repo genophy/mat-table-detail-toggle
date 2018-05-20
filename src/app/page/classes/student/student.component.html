@@ -1,0 +1,57 @@
+<!-- 记录切换 -->
+<div class="record-list" [ngClass]="{'v-hidden':!boxMaxFlag}">
+	<div class="record-item" *ngIf="recordItem && recordItem.recordPageIdx > 0" (click)="changeRecordPageIdx(recordItem.recordPageIdx-1)">
+		<-
+	</div>
+	<div *ngFor="let i of recordSatusList; let idx = index">
+		<div record-item class="record-item" [ngClass]="{'select':idx === recordItem['recordSelectIdx']}" (click)="selectRecordIdx(idx)">
+			{{idx + recordItem.recordPageIdx * recordItem.recordPageSize + 1}}
+		</div>
+	</div>
+	<div class="record-item" *ngIf="recordItem &&  ( recordItem.recordPageIdx+1) * recordItem.recordPageSize  < recordItem.recordTotal"
+		 (click)="changeRecordPageIdx(recordItem.recordPageIdx+1)">
+		->
+	</div>
+</div>
+
+<div class="title" (dblclick)="toggleBoxMax()">
+	学生成绩
+</div>
+
+<div *ngIf="student" class="table">
+	<div class="table-row">
+		<div class="table-cell">
+			编号
+		</div>
+		<div class="table-cell">
+			{{student['name']}}
+		</div>
+	</div>
+
+	<div class="table-row">
+		<div class="table-cell">
+			年龄
+		</div>
+		<div class="table-cell">
+			{{student['age']}}
+		</div>
+	</div>
+
+	<div class="table-row">
+		<div class="table-cell">
+			分数
+		</div>
+		<div class="table-cell">
+			<mat-progress-bar *ngIf="student['score']" mode="determinate" [value]="student['score']"></mat-progress-bar>
+		</div>
+	</div>
+
+	<div class="table-row">
+		<div class="table-cell">
+			标志码
+		</div>
+		<div class="table-cell">
+			{{student['code']}}
+		</div>
+	</div>
+</div>

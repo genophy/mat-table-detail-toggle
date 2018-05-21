@@ -9,7 +9,8 @@ const getStudents = function(pageIdx, pageSizs) {
 			}
 			const dbo = db.db('exam');
 			const queryLimit = getQueryLimit(pageIdx, pageSizs);
-			dbo.collection('students').find().skip(queryLimit.skip).limit(
+			dbo.collection('students').count().then(function(total, v) {
+				dbo.collection('students').find().skip(queryLimit.skip).limit(
 				queryLimit.limit).toArray(
 				function(
 					err2,
@@ -18,9 +19,14 @@ const getStudents = function(pageIdx, pageSizs) {
 					if (err2) {
 						throw err2;
 					}
-					resolve(result);
+					resolve({total: total, data: result},
+					);
 					db.close();
 				});
+			}, function(error) {
+				resolve({total: 0, data: []});
+			});
+
 		});
 	});
 };

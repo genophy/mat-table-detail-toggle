@@ -90,7 +90,8 @@ export class ClassesComponent implements OnInit, AfterViewInit {
 		return new Promise(resolve => {
 			this.studentsService.queryStudents(
 				pageIdx, pageSize).subscribe(value => {
-				this.dataSource.data = <any[]>value;
+				this.dataSource.data = value['data'];
+				this.paginator.length = value['total'];
 				resolve(<any[]>value);
 			});
 		});
